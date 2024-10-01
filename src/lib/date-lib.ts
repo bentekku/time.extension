@@ -1,75 +1,3 @@
-const getYear = (): number => {
-  const date: Date = new Date();
-  return date.getFullYear();
-};
-
-const getDaysRemaining = (): number => {
-  return -1;
-};
-
-const getMonth = (): number => {
-  const date: Date = new Date();
-  return date.getMonth();
-};
-
-const getMonthName = (): string => {
-  const month: number = getMonth();
-
-  let monthName: string = "";
-
-  switch (month) {
-    case 1:
-      monthName = "January";
-      break;
-    case 2:
-      monthName = "Febuary";
-      break;
-    case 3:
-      monthName = "March";
-      break;
-    case 4:
-      monthName = "April";
-      break;
-    case 5:
-      monthName = "May";
-      break;
-    case 6:
-      monthName = "June";
-      break;
-    case 7:
-      monthName = "July";
-      break;
-    case 8:
-      monthName = "August";
-      break;
-    case 9:
-      monthName = "September";
-      break;
-    case 10:
-      monthName = "October";
-      break;
-    case 11:
-      monthName = "November";
-      break;
-    case 12:
-      monthName = "December";
-      break;
-
-    default:
-      console.error("Wrong input to detect the month name");
-      throw new Error("Wrong input to detect the month name");
-
-      break; // It won't be called as an Error is being thrown, which automatically exits the program
-  }
-
-  return monthName;
-};
-
-const getTheDay = (): number => {
-  const date: Date = new Date();
-  return date.getDate();
-};
-
 const getTotalDaysOfMonth = (): number => {
   const month: number = getMonth();
   const year: number = getYear();
@@ -94,6 +22,68 @@ const getTotalDaysOfMonth = (): number => {
   }
 
   // returning -1, incase things goes south
+  return -1;
+};
+
+const getDaysRemaining = (input: string): number => {
+  const totalDays = getTotalDaysOfMonth();
+  const todayInNumber = getTheDay(input);
+
+  return totalDays - todayInNumber;
+  // if()
+  // return -1;
+};
+
+const getYear = (): number => {
+  const date: Date = new Date();
+  return date.getFullYear();
+};
+
+const getMonthName = (): string => {
+  const months = [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December",
+  ];
+  const month: number = getMonth();
+  const monthName: string = months[month];
+
+  return monthName;
+};
+
+const getMonth = (): number => {
+  const date: Date = new Date();
+  return date.getMonth();
+};
+
+const getTheDay = (input: string): number => {
+  if (input === "month") {
+    const date: number = new Date().getDate();
+    const totalDays: number = getTotalDaysOfMonth();
+    const result = ():number => {
+      return totalDays - date;
+    }
+    }
+    return { result() };
+  }
+  if (input === "week") {
+    const date: number = new Date().getDay();
+    const totalDays = 7;
+    return { date, totalDays };
+  }
+  if (input === "year") {
+    const date: Date = new Date();
+    return date.getFullYear();
+  }
   return -1;
 };
 

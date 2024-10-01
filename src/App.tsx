@@ -4,15 +4,17 @@ import {
   getTotalDaysOfMonth,
   getMonthName,
   getYear,
+  getDaysRemaining,
 } from "./lib/date-lib";
 
 const App = () => {
-  const condition: string = "month";
+  const condition: string = "year";
 
   return (
-    <div>
-      Year:{getYear()}. Month:{getMonth()}, {getMonthName()}. Day:{getTheDay()}/
-      {getTotalDaysOfMonth()}
+    <div className="text-3xl font-medium">
+      {/* Year:{getYear()}. Month:{getMonth()}, {getMonthName()}. Day:
+      {getTheDay("month")}/{getTotalDaysOfMonth()}.<br /> */}
+      Days remaining for the year: {getDaysRemaining(condition)}
     </div>
   );
 };
