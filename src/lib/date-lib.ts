@@ -84,10 +84,9 @@ const getYearAndMonth = (): { year: number; month: number } => {
 };
 
 export {
-  getMonth,
+  getYearAndMonth,
   getMonthName,
-  getTheDay,
   getTotalDaysOfMonth,
-  getYear,
   getDaysRemaining,
+  // getTheDay, // not really neccessary to export this function as it is called by getDaysRemaining()
 };
