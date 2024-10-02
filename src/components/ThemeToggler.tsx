@@ -1,5 +1,5 @@
 const ThemeToggler = () => {
-  return <div>ThemeToggler</div>;
+  return <div className="h-full border border-blue-600">ThemeToggler</div>;
 };
 
 export default ThemeToggler;
