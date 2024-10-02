@@ -1,3 +1,7 @@
+// Update the return type for getDaysRemaining
+type YearResult = { daysPassed: number; totalDays: number };
+type DaysRemainingResult = number | YearResult;
+
 // Utility function to check if a year is a leap year
 const isLeapYear = (year: number): boolean => {
   return (year % 4 === 0 && year % 100 !== 0) || year % 400 === 0;
@@ -24,12 +28,14 @@ const getTotalDaysOfMonth = (): number => {
 };
 
 // Function to get the number of days remaining based on the input type
-const getDaysRemaining = (input: "week" | "month" | "year"): number => {
+const getDaysRemaining = (
+  input: "week" | "month" | "year"
+): number | object => {
   return getTheDay(input);
 };
 
 // Function to calculate days passed and remaining based on the input type
-const getTheDay = (input: "month" | "week" | "year"): number => {
+const getTheDay = (input: "month" | "week" | "year"): DaysRemainingResult => {
   const today = new Date();
 
   if (input === "month") {
@@ -51,7 +57,11 @@ const getTheDay = (input: "month" | "week" | "year"): number => {
     const differenceInMilliseconds = today.getTime() - startOfYear.getTime();
     const daysPassed =
       Math.floor(differenceInMilliseconds / (1000 * 60 * 60 * 24)) + 1; // +1 for today
-    return totalDaysInYear - daysPassed; // Days remaining in the year
+
+    return {
+      daysPassed: daysPassed,
+      totalDays: totalDaysInYear,
+    }; // Days remaining in the year
   }
 
   throw new Error("Invalid input provided"); // Error handling for unexpected input
