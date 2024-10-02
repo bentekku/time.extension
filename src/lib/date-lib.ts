@@ -1,44 +1,68 @@
+// Utility function to check if a year is a leap year
+const isLeapYear = (year: number): boolean => {
+  return (year % 4 === 0 && year % 100 !== 0) || year % 400 === 0;
+};
+
+// Function to get the total number of days in the current month
 const getTotalDaysOfMonth = (): number => {
-  const month: number = getMonth();
-  const year: number = getYear();
-
-  // Checking if the month is Febuary
-  if (month === 2) {
-    // Checking if it's leap or not
-    if (year % 4 === 0 && year % 100 != 0) {
-      // Incase it's leap year, return 29 as total number days in the month of Febuary
-      return 29;
-      // Incase it's not leap year, return 28 as total number days in the month of Febuary
-    } else return 28;
-  }
-
-  // Checking if the month is not Febuary and is divisible by 2 with no remainders
-  if (month != 2 && month % 2 === 0) {
-    // This month is has even number days, returning 30 as the number of the days
-    return 30;
-  } else if (month % 2 != 0) {
-    // This month is has odd number days, returning 31 as the number of the days
-    return 31;
-  }
-
-  // returning -1, incase things goes south
-  return -1;
+  const { month, year } = getYearAndMonth();
+  const daysInMonth = [
+    31, // January
+    isLeapYear(year) ? 29 : 28, // February
+    31,
+    30,
+    31,
+    30,
+    31,
+    31,
+    30,
+    31,
+    30,
+    31, // March to December
+  ];
+  return daysInMonth[month];
 };
 
-const getDaysRemaining = (input: string): number => {
-  const totalDays = getTotalDaysOfMonth();
-  const todayInNumber = getTheDay(input);
-
-  return totalDays - todayInNumber;
-  // if()
-  // return -1;
+// Function to get the number of days remaining based on the input type
+const getDaysRemaining = (input: "week" | "month" | "year"): number => {
+  return getTheDay(input);
 };
 
+// Function to calculate days passed and remaining based on the input type
+const getTheDay = (input: "month" | "week" | "year"): number => {
+  const today = new Date();
+
+  if (input === "month") {
+    const totalDays = getTotalDaysOfMonth();
+    return totalDays - today.getDate(); // Days remaining in the month
+  }
+
+  if (input === "week") {
+    const adjustedToday = (today.getDay() + 6) % 7; // Returns 0 (Sun) to 6 (Sat) // Adjust so that Monday is 0 and Sunday is 6
+    const totalDays: number = 7;
+    const result: number = totalDays - 1 - adjustedToday; // Subtract 1 to count today
+
+    return result;
+  }
+
+  if (input === "year") {
+    const totalDaysInYear = isLeapYear(today.getFullYear()) ? 366 : 365;
+    const startOfYear = new Date(today.getFullYear(), 0, 1);
+    const differenceInMilliseconds = today.getTime() - startOfYear.getTime();
+    const daysPassed =
+      Math.floor(differenceInMilliseconds / (1000 * 60 * 60 * 24)) + 1; // +1 for today
+    return totalDaysInYear - daysPassed; // Days remaining in the year
+  }
+
+  throw new Error("Invalid input provided"); // Error handling for unexpected input
+};
+
+// Function to get the current year
 const getYear = (): number => {
-  const date: Date = new Date();
-  return date.getFullYear();
+  return getYearAndMonth().year;
 };
 
+// Function to get the name of the current month
 const getMonthName = (): string => {
   const months = [
     "January",
@@ -54,39 +78,22 @@ const getMonthName = (): string => {
     "November",
     "December",
   ];
-  const month: number = getMonth();
-  const monthName: string = months[month];
-
-  return monthName;
+  const { month } = getYearAndMonth();
+  return months[month];
 };
 
+// Function to get both current year and month as an object
+const getYearAndMonth = (): { year: number; month: number } => {
+  const date = new Date();
+  return { year: date.getFullYear(), month: date.getMonth() };
+};
+
+// Function to get the current month index (0-11)
 const getMonth = (): number => {
-  const date: Date = new Date();
-  return date.getMonth();
+  return getYearAndMonth().month;
 };
 
-const getTheDay = (input: string): number => {
-  if (input === "month") {
-    const date: number = new Date().getDate();
-    const totalDays: number = getTotalDaysOfMonth();
-    const result = ():number => {
-      return totalDays - date;
-    }
-    }
-    return { result() };
-  }
-  if (input === "week") {
-    const date: number = new Date().getDay();
-    const totalDays = 7;
-    return { date, totalDays };
-  }
-  if (input === "year") {
-    const date: Date = new Date();
-    return date.getFullYear();
-  }
-  return -1;
-};
-
+// Exporting the functions for external use
 export {
   getMonth,
   getMonthName,
