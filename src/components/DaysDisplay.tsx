@@ -34,11 +34,10 @@ const DaysDisplay = ({ condition, days }: Props) => {
   const left: number = total - passed;
 
   return (
-    <div className="w-2/3 h-full border border-red-600 p-5">
+    // border border-red-600
+    <div className="w-2/3 h-full  p-5 bg-lightDaysContainer rounded-lg">
       <div className="flex h-full w-full items-center justify-center">
-        {" "}
-        <div className="flex flex-wrap justify-center">
-          {" "}
+        <div className="flex flex-wrap justify-center transition-all duration-800">
           {/* Passed days blocks */}
           {Array.from({ length: passed }).map((_, index) => (
             <PassedBlocks key={index}>{index + 1}</PassedBlocks>
@@ -54,20 +53,18 @@ const DaysDisplay = ({ condition, days }: Props) => {
 };
 
 const PassedBlocks: React.FC<BlocksProps> = ({ children }) => {
-  // min-w-10 min-h-10
+  // w-16 h-16
   return (
-    <div
-      className={`bg-passedDay m-2 transition-all flex flex-1 items-center justify-center text-lightText`}
-    >
+    <div className="text-xs font-medium w-7 h-7 bg-passedDay m-2 transition-all flex items-center justify-center text-lightText">
       {children}
     </div>
   );
 };
 
 const LeftBlocks: React.FC<BlocksProps> = ({ children }) => {
-  // min-w-10 min-h-10
+  // w-16 h-16
   return (
-    <div className=" bg-remainingDay m-2 transition-all p-1 flex flex-1 items-center justify-center text-darkMode">
+    <div className="text-xs font-medium w-7 h-7 bg-remainingDay m-2 transition-all flex items-center justify-center text-darkMode">
       {children}
     </div>
   );

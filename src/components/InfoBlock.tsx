@@ -19,8 +19,8 @@ const InfoBlock = ({ condition, days }: InfoBlockProps) => {
 
   return (
     <div className="flex flex-col items-center">
-      <h1 className="text-7xl mb-4">Time</h1>
-      <h2 className="capitalize text-darkText text-3xl mb-2">
+      <h1 className="text-7xl mb-1">Time</h1>
+      <h2 className="capitalize text-darkText text-3xl mb-1">
         <span className="text-lg text-gray-300">|</span> {condition}{" "}
         <span className="text-lg text-gray-300">|</span>
       </h2>

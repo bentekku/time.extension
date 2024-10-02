@@ -39,9 +39,9 @@ const App = () => {
   }
 
   return (
-    <div className="font-medium h-screen w-full flex flex-col items-center justify-between bg-lightText">
+    <div className="font-medium h-screen w-full flex flex-col items-center justify-between bg-lightText ">
       {/* HEADER */}
-      <div className="w-4/5 flex flex-1 justify-between py-5">
+      <div className="w-4/5 flex flex-1 justify-between">
         <ConditionDropDown />
         <InfoBlock
           condition={condition}
@@ -49,7 +49,7 @@ const App = () => {
         />
         <ThemeToggler />
       </div>
-      <div className="w-4/5 flex flex-[4] justify-center">
+      <div className="w-4/5 flex flex-[5] justify-center">
         <DaysDisplay condition={condition} days={daysData} />
       </div>
       <div className="flex flex-1">

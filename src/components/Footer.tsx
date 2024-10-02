@@ -21,9 +21,9 @@ const Footer = () => {
 
   // h-[8rem]
   return (
-    <div className="w-full flex flex-col items-center justify-center  bg-lightText gap-5">
+    <div className="w-full flex flex-col items-center justify-center  bg-lightText gap-3 transition-all duration-800">
       <h1 className="text-xl text-darkText font-medium">{time.toString()}</h1>
-      <div className="text-sm flex items-center justify-center bg-darkMode text-lightText py-2 px-6 rounded-xl shadow-lg -mb-3 ">
+      <div className="text-sm flex items-center justify-center bg-darkMode text-lightText py-2 px-6 rounded-xl shadow-lg -mb-3">
         <p>
           Made with &lt;3 by{" "}
           <a
