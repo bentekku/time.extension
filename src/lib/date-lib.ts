@@ -57,11 +57,6 @@ const getTheDay = (input: "month" | "week" | "year"): number => {
   throw new Error("Invalid input provided"); // Error handling for unexpected input
 };
 
-// Function to get the current year
-const getYear = (): number => {
-  return getYearAndMonth().year;
-};
-
 // Function to get the name of the current month
 const getMonthName = (): string => {
   const months = [
@@ -88,12 +83,6 @@ const getYearAndMonth = (): { year: number; month: number } => {
   return { year: date.getFullYear(), month: date.getMonth() };
 };
 
-// Function to get the current month index (0-11)
-const getMonth = (): number => {
-  return getYearAndMonth().month;
-};
-
-// Exporting the functions for external use
 export {
   getMonth,
   getMonthName,

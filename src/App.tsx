@@ -1,7 +1,7 @@
 import { getDaysRemaining } from "./lib/date-lib";
 
 const App = () => {
-  const condition: "week" | "month" | "year" = "week";
+  const condition: "week" | "month" | "year" = "year";
 
   return (
     <div className="text-3xl font-medium">
