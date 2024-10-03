@@ -1,21 +1,23 @@
-import ConditionDropDown from "./components/ConditionDropDown";
 import DaysDisplay from "./components/DaysDisplay";
 import Footer from "./components/Footer";
 import InfoBlock from "./components/InfoBlock";
-import ThemeToggler from "./components/ThemeToggler";
+import DaysDataProvider, { useDaysData } from "./context/DaysDataProvider";
 import { getDaysRemaining } from "./lib/date-lib";
-
-type Days = {
-  daysPassed?: number;
-  totalDays?: number;
-  unboundDays?: number;
-};
+import { daysType } from "./types/types";
 
 const App = () => {
-  const condition: "week" | "month" | "year" = "year";
+  return (
+    <DaysDataProvider>
+      <MainContent />
+    </DaysDataProvider>
+  );
+};
+
+const MainContent = () => {
+  const { condition } = useDaysData();
   const result = getDaysRemaining(condition);
 
-  let daysData: Days = {
+  let daysData: daysType = {
     daysPassed: 0,
     totalDays: 0,
     unboundDays: 0,
@@ -39,20 +41,15 @@ const App = () => {
   }
 
   return (
-    <div className="font-medium h-screen w-full flex flex-col items-center justify-between bg-lightText ">
+    <div className="font-medium h-screen w-full flex flex-col items-center justify-between bg-darkMode text-lightText font-jetBrain">
       {/* HEADER */}
-      <div className="w-4/5 flex flex-1 justify-between">
-        <ConditionDropDown />
-        <InfoBlock
-          condition={condition}
-          days={daysData} // Pass daysData as prop
-        />
-        <ThemeToggler />
+      <div className="w-4/5 flex items-center justify-center py-5">
+        <InfoBlock />
       </div>
-      <div className="w-4/5 flex flex-[5] justify-center">
-        <DaysDisplay condition={condition} days={daysData} />
+      <div className="w-4/5 flex justify-center">
+        <DaysDisplay days={daysData} />
       </div>
-      <div className="flex flex-1">
+      <div className="flex">
         <Footer />
       </div>
     </div>
