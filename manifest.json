@@ -1,8 +1,8 @@
 {
   "manifest_version": 3,
-  "name": "Time",
+  "name": "Time.Keeper",
   "version": "1.0",
-  "description": "A custom page that shows numbers of days remaining",
+  "description": "A new tab extension that displays number of days remaining according to the criteria selected. It's a modern looking tab with minimal design and font selection.",
   "chrome_url_overrides": {
     "newtab": "index.html"
   },
