@@ -1,12 +1,19 @@
 import DaysDisplay from "./components/DaysDisplay";
 import Footer from "./components/Footer";
 import InfoBlock from "./components/InfoBlock";
-import { useDaysData } from "./context/DaysDataProvider";
+import DaysDataProvider, { useDaysData } from "./context/DaysDataProvider";
 import { getDaysRemaining } from "./lib/date-lib";
 import { daysType } from "./types/types";
 
 const App = () => {
-  // const condition: "week" | "month" | "year" = "year"; // No need for it anymore
+  return (
+    <DaysDataProvider>
+      <MainContent />
+    </DaysDataProvider>
+  );
+};
+
+const MainContent = () => {
   const { condition } = useDaysData();
   const result = getDaysRemaining(condition);
 

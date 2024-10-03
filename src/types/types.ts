@@ -1,14 +1,25 @@
 import React from "react";
 
-export type conditionType = "week" | "month" | "year";
+type conditionType = "week" | "month" | "year";
 
-export type daysType = {
+type daysType = {
   daysPassed?: number;
   totalDays?: number;
   unboundDays?: number;
 };
 
-export type DaysDataContextType = {
+type DaysDataContextType = {
   condition: conditionType;
   setCondition: React.Dispatch<React.SetStateAction<conditionType>>;
+};
+
+type conditionArrayType = {
+  name: string;
+};
+
+export type {
+  conditionType,
+  daysType,
+  DaysDataContextType,
+  conditionArrayType,
 };
