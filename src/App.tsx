@@ -1,8 +1,6 @@
-import ConditionDropDown from "./components/ConditionDropDown";
 import DaysDisplay from "./components/DaysDisplay";
 import Footer from "./components/Footer";
 import InfoBlock from "./components/InfoBlock";
-import ThemeToggler from "./components/ThemeToggler";
 import { getDaysRemaining } from "./lib/date-lib";
 
 type Days = {
@@ -42,12 +40,10 @@ const App = () => {
     <div className="font-medium h-screen w-full flex flex-col items-center justify-between bg-lightText ">
       {/* HEADER */}
       <div className="w-4/5 flex flex-1 justify-between">
-        <ConditionDropDown />
         <InfoBlock
           condition={condition}
           days={daysData} // Pass daysData as prop
         />
-        <ThemeToggler />
       </div>
       <div className="w-4/5 flex flex-[5] justify-center">
         <DaysDisplay condition={condition} days={daysData} />
