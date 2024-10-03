@@ -1,19 +1,9 @@
 import { getTotalDaysOfMonth } from "@/lib/date-lib";
-import { ReactNode } from "react";
-
-type Condition = "week" | "month" | "year";
-type Days = {
-  daysPassed?: number;
-  totalDays?: number;
-  unboundDays?: number;
-};
+import { conditionType, daysType } from "@/types/types";
 
 interface Props {
-  condition: Condition;
-  days: Days;
-}
-interface BlocksProps {
-  children: ReactNode;
+  condition: conditionType;
+  days: daysType;
 }
 
 const DaysDisplay = ({ condition, days }: Props) => {
@@ -35,39 +25,17 @@ const DaysDisplay = ({ condition, days }: Props) => {
 
   return (
     // border border-red-600
-    <div className="w-2/3 h-full  p-5 bg-lightDaysContainer rounded-lg">
-      <div className="flex h-full w-full items-center justify-center">
-        <div className="flex flex-wrap justify-center transition-all duration-800">
-          {/* Passed days blocks */}
-          {Array.from({ length: passed }).map((_, index) => (
-            <PassedBlocks key={index}>{index + 1}</PassedBlocks>
-          ))}
-          {/* Remaining days blocks */}
-          {Array.from({ length: left }).map((_, index) => (
-            <LeftBlocks key={index}>{index + 1}</LeftBlocks>
-          ))}
-        </div>
+    <div className="w-2/3 h-full p-5 rounded-lg flex items-center justify-center">
+      <div className="flex">
+        <h1 className="text-[64px] font-semibold animate-pulse -translate-y-1 translate-x-3">
+          {left}
+        </h1>
+        <span className="text-[72px] opacity-[11%] font-thin">/</span>
+        <h2 className="text-[20px] opacity-[62%] font-extralight translate-y-14 -translate-x-3">
+          {total}
+        </h2>
       </div>
     </div>
   );
 };
-
-const PassedBlocks: React.FC<BlocksProps> = ({ children }) => {
-  // w-16 h-16
-  return (
-    <div className="text-xs font-medium w-7 h-7 bg-passedDay m-2 transition-all flex items-center justify-center text-lightText">
-      {children}
-    </div>
-  );
-};
-
-const LeftBlocks: React.FC<BlocksProps> = ({ children }) => {
-  // w-16 h-16
-  return (
-    <div className="text-xs font-medium w-7 h-7 bg-remainingDay m-2 transition-all flex items-center justify-center text-darkMode">
-      {children}
-    </div>
-  );
-};
-
 export default DaysDisplay;
