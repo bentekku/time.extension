@@ -1,7 +1,7 @@
 import { conditionType } from "@/types/types";
 import { useEffect, useState } from "react";
 
-export const useConditionChange = () => {
+export const useCondition = () => {
   // Function to get the initial condition from localStorage
   const getInitialCondition = () => {
     const savedCondition = localStorage.getItem("condition");

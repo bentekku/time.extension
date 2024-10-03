@@ -1,12 +1,14 @@
+import { useDaysData } from "@/context/DaysDataProvider";
 import { getTotalDaysOfMonth } from "@/lib/date-lib";
-import { conditionType, daysType } from "@/types/types";
+import { daysType } from "@/types/types";
 
 interface Props {
-  condition: conditionType;
   days: daysType;
 }
 
-const DaysDisplay = ({ condition, days }: Props) => {
+const DaysDisplay = ({ days }: Props) => {
+  const { condition } = useDaysData();
+
   let total: number;
   let passed: number;
 

@@ -1,11 +1,13 @@
 import DaysDisplay from "./components/DaysDisplay";
 import Footer from "./components/Footer";
 import InfoBlock from "./components/InfoBlock";
+import { useDaysData } from "./context/DaysDataProvider";
 import { getDaysRemaining } from "./lib/date-lib";
 import { daysType } from "./types/types";
 
 const App = () => {
-  const condition: "week" | "month" | "year" = "year";
+  // const condition: "week" | "month" | "year" = "year"; // No need for it anymore
+  const { condition } = useDaysData();
   const result = getDaysRemaining(condition);
 
   let daysData: daysType = {
@@ -35,10 +37,10 @@ const App = () => {
     <div className="font-medium h-screen w-full flex flex-col items-center justify-between bg-darkMode text-lightText font-jetBrain">
       {/* HEADER */}
       <div className="w-4/5 flex items-center justify-center py-5">
-        <InfoBlock condition={condition} />
+        <InfoBlock />
       </div>
       <div className="w-4/5 flex justify-center">
-        <DaysDisplay condition={condition} days={daysData} />
+        <DaysDisplay days={daysData} />
       </div>
       <div className="flex">
         <Footer />

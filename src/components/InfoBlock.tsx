@@ -1,9 +1,8 @@
-import { conditionType } from "@/types/types";
-interface InfoBlockProps {
-  condition: conditionType;
-}
+import { useDaysData } from "@/context/DaysDataProvider";
 
-const InfoBlock = ({ condition }: InfoBlockProps) => {
+const InfoBlock = () => {
+  const { condition } = useDaysData();
+
   return (
     <div className="flex flex-col items-center">
       <h1 className="text-[37px] mb-1">Time.Keeper</h1>
