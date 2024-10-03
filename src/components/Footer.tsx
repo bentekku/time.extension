@@ -53,8 +53,8 @@ const Footer = () => {
   };
 
   return (
-    <div className="w-full flex flex-col items-center justify-center gap-2 group py-3 transition-opacity duration-300">
-      <h1 className="text-[22px] text-darkText opacity-[30%] font-light ">
+    <div className="w-full flex flex-col items-center justify-center gap-2 group py-3 transition-opacity duration-300 select-none">
+      <h1 className="text-[22px] text-darkText opacity-[30%] font-light">
         {formatDate(time)}
       </h1>
       <p className="group-hover:opacity-[35%] opacity-0 text-darkText">

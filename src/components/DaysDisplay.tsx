@@ -27,7 +27,7 @@ const DaysDisplay = ({ days }: Props) => {
 
   return (
     // border border-red-600
-    <div className="w-2/3 h-full p-5 rounded-lg flex items-center justify-center">
+    <div className="w-2/3 h-full p-5 rounded-lg flex items-center justify-center select-none">
       <div className="flex">
         <h1 className="text-[64px] font-semibold animate-pulse -translate-y-1 translate-x-3">
           {left}
